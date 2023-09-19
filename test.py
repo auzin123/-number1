@@ -5,4 +5,6 @@ if age >= 18:
 elif age == 17:
     print(":)")
 else:
+    if age >99:
+        print ("Ты слишком стар")
     print("Мал ещё")
