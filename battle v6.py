@@ -9,10 +9,10 @@ def game():
     player_hp = 50 * player_level
     player_xp = 0
     player_money = 1000
-
     visit_rock(player_name, player_hp, player_money, player_xp, player_level, player_potion)
 
-def visit_rock(player_name, player_hp, player_money, player_xp, player_level, player_potion):
+
+def visit_rock(player_name, player_hp, player_money, player_xp, player_level, anemy_hp):
     while player_xp > 0 and anemy_hp > 0:
         os.system("cls")
         show_heroes(player_name, player_hp, player_money, player_level, player_potion)
@@ -44,7 +44,7 @@ def visit_rock(player_name, player_hp, player_money, player_xp, player_level, pl
             if battle_option == "1":
                 while True:
                     input('нажмите ENTER тобы сделать ход')
-                    plaer_attak = randint(1, 10) * player_level
+                    plaer_attak = randint(0, 25) * player_level
                     anemy_hp -= plaer_attak
                     print(player_name, 'ударил', anemy_name, 'на', plaer_attak, 'жизней')
                     print('у', anemy_name, 'осталось', anemy_hp, 'жизней')
@@ -55,28 +55,13 @@ def visit_rock(player_name, player_hp, player_money, player_xp, player_level, pl
                         player_money += 15
                         print('у вас', player_money, "монет")
                         pause()
-                        visit_rock(player_name, player_hp, player_money, player_xp, player_level, player_potion)
+                        visit_rock(player_name, player_hp, player_money, player_xp, player_level,)
                         if player_xp % 10 == 0:
                             player_level += player_xp // 10
                             player_xp += anemy_level  % 10
                             print(player_name, 'получил', player_level, 'уровень')
-                            if player_potion > 0:
-                                print('-----------------------------')
-                                print('использовать зелье лечения?')
-                                pause('1 - да')
-                                pause('2 - нет')
-                                poytion = input("Введите номер ответа и нажмите ENTER ")
-                                if poytion == '1':
-                                    player_potion -= 1
-                                    player_hp += 10
-                                    print(player_name, 'востановил 10 жизней')
-                                    pause()
-                                elif poytion == '2':
-                                    pause()
-                                    visit_rock(player_name, player_hp, player_money, player_xp, player_level, player_potion)
-                            pause()
                             break        
-                    anemy_attak = randint(0, 10) * anemy_level
+                    anemy_attak = randint(0, 25) * anemy_level
                     player_hp -= anemy_attak
                     print(anemy_name, 'ударил', player_name, 'на', plaer_attak, 'жизней')
                     print('у', player_name, 'осталось', player_hp, 'жизней')
